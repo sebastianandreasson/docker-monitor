@@ -1,0 +1,7 @@
+{
+  "verbose": false,
+  "ignore": ["*.test.js", "fixtures/*", "dist/*", "test/*", "src/*", ".happypack"],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

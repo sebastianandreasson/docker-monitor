@@ -1,0 +1,45 @@
+{
+  "extends": [
+    "stylelint-config-css-modules"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [ true, {
+      ignoreAtRules: ['extend', 'at-root', 'debug', 'warn', 'error', 'if', 'else', 'for', 'each', 'while', 'mixin', 'include', 'content', 'return', 'function']
+    }],
+    "color-hex-case": "lower",
+    "color-hex-length": "short",
+    "color-named": "never",
+    "color-no-invalid-hex": true,
+    "custom-property-no-outside-root": true,
+    "custom-property-pattern": "[a-z0-9-]*",
+    "declaration-block-no-duplicate-properties": [true, { "ignore": ["consecutive-duplicates"]}],
+    "declaration-block-no-ignored-properties": true,
+    "declaration-block-properties-order": [["composes"], { unspecified: "bottomAlphabetical" }],
+    "declaration-block-single-line-max-declarations": 1,
+    "declaration-block-trailing-semicolon": "always",
+    "function-calc-no-unspaced-operator": true,
+    "function-name-case": "lower",
+    "indentation": 2,
+    "max-nesting-depth": 4,
+    "no-extra-semicolons": true,
+    "no-unsupported-browser-features": [true, { "browsers": "ChromeAndroid > 55" }],
+    "number-leading-zero": "never",
+    "number-max-precision": 3,
+    "number-no-trailing-zeros": true,
+    "property-case": "lower",
+    "property-no-vendor-prefix": true,
+    "root-no-standard-properties": true,
+    "selector-pseudo-element-case": "lower",
+    "selector-pseudo-element-colon-notation": "single",
+    "selector-pseudo-element-no-unknown": true,
+    "selector-type-case": "lower",
+    "shorthand-property-no-redundant-values": true,
+    "string-no-newline": true,
+    "stylelint-disable-reason": "always-before",
+    "unit-case": "lower",
+    "unit-no-unknown": [true, { ignoreUnits: ['composes'] }],
+    "value-keyword-case": "lower",
+    "value-list-comma-newline-after": "never-multi-line",
+    "value-no-vendor-prefix": true
+  }
+}
