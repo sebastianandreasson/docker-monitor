@@ -12,9 +12,7 @@ export const update = createAction(NODES_UPDATE)
 /* THUNKS
 ------------------------------------------------- */
 export const fetch = () => {
-  console.log('fetch')
   return (dispatch) => {
-    console.log('do it')
     dispatch(fetching())
 
     get('/nodes', { local: true })
