@@ -14,29 +14,6 @@
     "mochatest": "./node_modules/mocha/bin/mocha --compilers .:src/compiler.js src/**/_tests_/*.spec.js --watch --reporter dot",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gaearon/react-transform-boilerplate.git"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack",
-    "babel",
-    "react-transform"
-  ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
-  "license": "CC0-1.0",
-  "bugs": {
-    "url": "https://github.com/gaearon/react-transform-boilerplate/issues"
-  },
-  "homepage": "https://github.com/gaearon/react-transform-boilerplate",
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel-core": "^6.7.4",
@@ -93,17 +70,12 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "classnames": "^2.2.3",
-    "clearingnummer": "^0.2.1",
+    "dockerode": "^2.5.0",
     "eslint-config-iteam": "^0.1.0",
     "eslint-config-standard": "^6.0.0",
     "eslint-plugin-promise": "^2.0.0",
     "eslint-plugin-standard": "^2.0.0",
     "exports-loader": "^0.6.3",
-    "express-hbs": "^1.0.1",
-    "fixed-data-table": "^0.6.3",
-    "formsy-react": "^0.18.0",
-    "formsy-react-components": "^0.8.0",
-    "google-libphonenumber": "^2.0.4",
     "history": "^2.0.0",
     "immutable": "^3.8.1",
     "imports-loader": "^0.7.0",
@@ -126,7 +98,6 @@
     "react-redux": "^4.4.5",
     "react-router": "^3.0.0",
     "react-router-scroll": "^0.4.1",
-    "react-select": "^1.0.0-beta11",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-actions": "^1.1.0",
@@ -134,6 +105,7 @@
     "require-dir": "^0.3.1",
     "rimraf": "^2.4.3",
     "scroll-to-element": "^2.0.0",
+    "socket.io": "^2.0.3",
     "transfer-webpack-plugin": "^0.1.4",
     "whatwg-fetch": "^2.0.1"
   }

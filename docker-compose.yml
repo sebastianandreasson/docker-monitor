@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  node-exporter:
+    build: './node-exporter/.'
+    volumes:
+      - /var/run:/var/run:rw
