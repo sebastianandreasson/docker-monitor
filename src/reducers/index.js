@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import stats from './stats'
+import nodes from './nodes'
 
 const rootReducer = combineReducers({
-  stats
+  nodes
 })
 
 export default rootReducer

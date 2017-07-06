@@ -1,20 +1,21 @@
 import {
-  STATS_FETCHING,
-  STATS_UPDATE
-} from '../actions/stats'
+  NODES_FETCHING,
+  NODES_UPDATE
+} from '../actions/nodes'
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-  loading: false
+  loading: false,
+  data: []
 }
 
 export default handleActions({
-  [STATS_UPDATE]: (state, { payload }) => ({
+  [NODES_UPDATE]: (state, { payload }) => ({
     ...state,
     loading: false,
-    ...payload
+    data: payload.nodes
   }),
-  [STATS_FETCHING]: state => ({
+  [NODES_FETCHING]: state => ({
     ...state,
     loading: true
   })
