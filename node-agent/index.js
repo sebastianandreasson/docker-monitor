@@ -5,7 +5,14 @@ const docker = new Docker()
 
 socket.on('connect', () => {
 
-  socket.emit('register-node', {})
+  docker.listContainers((err, containers) => {
+    socket.emit('register-node', {
+      stats: {
+
+      },
+      containers: containers,
+    })
+  })
 })
 
 socket.on('containers', (callback) => {
