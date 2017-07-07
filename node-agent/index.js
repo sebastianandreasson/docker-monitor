@@ -1,3 +1,5 @@
+const appmetrics = require('appmetrics')
+const monitor = appmetrics.monitor()
 const Docker = require('dockerode')
 const socket = require('socket.io-client')('http://localhost:3000')
 
@@ -8,11 +10,13 @@ socket.on('connect', () => {
   docker.listContainers((err, containers) => {
     socket.emit('register-node', {
       stats: {
-
       },
       containers: containers,
     })
   })
+
+  monitor.on('cpu', data => socket.emit('cpu', data))
+  monitor.on('memory', data => socket.emit('memory', data))
 })
 
 socket.on('containers', (callback) => {

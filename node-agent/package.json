@@ -6,6 +6,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "appmetrics": "^3.0.2",
     "eslint-config-iteam": "^0.1.0",
     "eslint-config-standard": "^6.0.0",
     "eslint-plugin-promise": "^2.0.0",
