@@ -1,7 +1,19 @@
 version: '2'
 
 services:
-  node-exporter:
-    build: './node-exporter/.'
+  docker-monitor:
+    build: '.'
+    environment:
+      - server__port=3000
+      - server__host=localhost
+      - dockerCloud__username=sebastianandreas
+      - dockerCloud__apiKey=b342ebf3-cbb6-4293-a1bf-e696b20a32c7
+    ports:
+      - '3000:3000'
+  node-agent:
+    build: './node-agent/.'
     volumes:
       - /var/run:/var/run:rw
+    environment:
+      - monitor__host=localhost
+      - monitor__port=3000

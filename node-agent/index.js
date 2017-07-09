@@ -1,7 +1,9 @@
 const appmetrics = require('appmetrics')
 const monitor = appmetrics.monitor()
+
+const { monitor: { host, port } } = require('./config')
 const Docker = require('dockerode')
-const socket = require('socket.io-client')('http://localhost:3000')
+const socket = require('socket.io-client')(`http://${host}:${port}`)
 
 const docker = new Docker()
 

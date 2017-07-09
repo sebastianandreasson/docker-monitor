@@ -5,6 +5,7 @@ WORKDIR /app
 
 RUN npm install
 
-COPY ./lib ./lib
+COPY ./index.js ./index.js
+COPY ./config.js ./config.js
 
 CMD npm run -s start

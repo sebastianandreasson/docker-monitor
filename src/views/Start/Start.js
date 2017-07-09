@@ -4,7 +4,7 @@ import styles from './Start.css'
 
 const renderContainer = (container) =>
   <div styleName="container">
-    {container.meta ? container.meta.Id : container.docker_id}
+    {container.meta ? container.meta.Image : container.name}
 
   </div>
 

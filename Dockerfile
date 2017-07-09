@@ -13,8 +13,6 @@ COPY webpack.config.prod.js ./
 COPY index.html ./
 
 COPY ./src ./src
-ARG API__URL
 RUN npm run build
 
-EXPOSE 4000
 CMD npm run -s start

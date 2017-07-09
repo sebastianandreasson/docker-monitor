@@ -1,0 +1,15 @@
+docker-monitor:
+  image: 'sebastianandreas/dockercloud-monitor:latest'
+  environment:
+    - server__port=3000
+    - dockerCloud__username=sebastianandreas
+    - dockerCloud__apiKey=b342ebf3-cbb6-4293-a1bf-e696b20a32c7
+  ports:
+    - '3000:3000'
+node-agent:
+  image: 'sebastianandreas/dockercloud-monitor-agent:latest'
+  volumes:
+    - /var/run:/var/run:rw
+  environment:
+    - monitor__host=docker-monitor
+    - monitor__port=3000
