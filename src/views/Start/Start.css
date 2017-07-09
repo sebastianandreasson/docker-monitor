@@ -1,13 +1,1 @@
-.node {
-  display: flex;
-  flex-direction: column;
 
-  background-color: lime;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-
-  background-color: gray;
-}

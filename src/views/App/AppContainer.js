@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import App from './App'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as StatsActions from '../../actions/stats'
 
 export class AppContainer extends Component {
   constructor (props) {
@@ -7,19 +10,28 @@ export class AppContainer extends Component {
   }
 
   componentDidMount () {
+    setInterval(() => {
+      this.props.fetch()
+    }, 10000)
   }
 
   render () {
     return (
-      <App
-        {...this.props}
-        offline={this.props.offline} />
+      <App {...this.props} />
     )
   }
 }
 
 AppContainer.propTypes = {
-  offline: PropTypes.bool
+  fetch: PropTypes.func
 }
 
-export default AppContainer
+const mapStateToProps = (state) => {
+  return { ...state.stats }
+}
+
+const mapDispatch = (dispatch) => {
+  return bindActionCreators(StatsActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatch)(AppContainer)

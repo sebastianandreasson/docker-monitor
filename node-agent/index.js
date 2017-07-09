@@ -8,18 +8,15 @@ const socket = require('socket.io-client')(`http://${host}:${port}`)
 const docker = new Docker()
 
 socket.on('connect', () => {
-
   docker.listContainers((err, containers) => {
     socket.emit('register-node', {
-      stats: {
-      },
       containers: containers,
     })
   })
-
-  monitor.on('cpu', data => socket.emit('cpu', data))
-  monitor.on('memory', data => socket.emit('memory', data))
 })
+
+monitor.on('cpu', data => socket.emit('cpu', data))
+monitor.on('memory', data => socket.emit('memory', data))
 
 socket.on('containers', (callback) => {
   docker.listContainers((err, containers) => callback(containers))

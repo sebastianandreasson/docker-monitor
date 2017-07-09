@@ -10,7 +10,6 @@ export class StartContainer extends Component {
   }
 
   componentDidMount () {
-    console.log('fetch yo')
     this.props.fetch()
   }
 

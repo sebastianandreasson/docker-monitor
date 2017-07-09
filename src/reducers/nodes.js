@@ -2,6 +2,9 @@ import {
   NODES_FETCHING,
   NODES_UPDATE
 } from '../actions/nodes'
+import {
+  STATS_UPDATE
+} from '../actions/stats'
 import { handleActions } from 'redux-actions'
 
 const initialState = {
@@ -18,5 +21,12 @@ export default handleActions({
   [NODES_FETCHING]: state => ({
     ...state,
     loading: true
+  }),
+  [STATS_UPDATE]: (state, { payload }) => ({
+    ...state,
+    data: state.data.map(node => {
+      node.stats = payload.stats[node.uuid]
+      return node
+    })
   })
 }, initialState)
