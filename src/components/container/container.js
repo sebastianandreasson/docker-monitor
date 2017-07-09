@@ -1,16 +1,23 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './container.css'
+import { TableRow, TableCell } from 'material-ui/Table'
 
 export const Container = (props) =>
-<div styleName="root">
-  <a href={`/container/${props.uuid}`}>
-    {props.name}
-  </a>
-</div>
+<TableRow>
+  <TableCell>
+    <a href={`/container/${props.uuid}`}>
+      {props.name}
+    </a>
+  </TableCell>
+  <TableCell>
+    {props.started_datetime}
+  </TableCell>
+</TableRow>
 
 Container.propTypes = {
   name: PropTypes.string,
+  started_datetime: PropTypes.string,
   uuid: PropTypes.string
 }
 

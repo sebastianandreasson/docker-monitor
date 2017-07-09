@@ -1,27 +1,35 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './node.css'
+import Card, { CardHeader, CardContent } from 'material-ui/Card'
+import Table, { TableBody, TableHead, TableRow, TableCell } from 'material-ui/Table'
 
 import Container from '../container'
 
 export const Node = (props) =>
-  <div styleName="root">
-    <a href={`/node/${props.uuid}`}>
-      {props.public_ip}
-    </a>
-    <div>
-      {props.stats &&
-        <div>
-          <span>CPU: {props.stats.cpu[0].system}%</span>
-          <br />
-          <span>MEM: {props.stats.memory[0].physical_used / props.stats.memory[0].physical_total}%</span>
-        </div>
-      }
-    </div>
-    {props.containers.map(container =>
-      <Container key={`Container_${container.uuid}`} {...container} />
-    )}
-  </div>
+  <Card styleName="root">
+    <CardHeader
+      subheader={props.uuid}
+      title={`${props.public_ip},
+        CPU: ${props.stats ? props.stats.cpu[0].system: '-'}%,
+        MEM: ${props.stats ? (props.stats.memory[0].physical_used / props.stats.memory[0].physical_total) : '-'}%`}
+    />
+    <CardContent>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Started</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {props.containers.map(container =>
+            <Container key={`Container_${container.uuid}`} {...container} />
+          )}
+        </TableBody>
+      </Table>
+    </CardContent>
+  </Card>
 
 Node.propTypes = {
   containers: PropTypes.arrayOf(PropTypes.shape({})),
