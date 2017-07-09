@@ -11,7 +11,8 @@ import { useScroll } from 'react-router-scroll'
 
 import App from './views/App'
 import NotFound from './views/NotFound'
-import StartContainer from './views/Start/StartContainer'
+import StartContainer from './views/Start'
+import NodeContainer from './views/Node'
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 const store = configureStore()
@@ -27,6 +28,7 @@ ReactDOM.render((
     render={applyRouterMiddleware(useScroll())}>
       <Route component={App} path="/">
         <IndexRoute component={StartContainer} />
+        <Route component={NodeContainer} path="/node/:id" />
       </Route>
       <Route component={NotFound} path="*" />
     </Router>
