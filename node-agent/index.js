@@ -9,11 +9,14 @@ const docker = new Docker()
 
 function getContainerStats() {
   docker.listContainers((err, containers) => {
-    containers.forEach((container) => {
+    containers.forEach((container, i) => {
       docker.getContainer(container.Id).stats(function(err, stream) {
         if (err) console.error(err)
         stream.on('data', data => {
           const stats = JSON.parse(data.toString())
+          if (i === 0) {
+            stats.id = 'c8dcc8d21072cf3946457b3b925c95458656e9be8a53cc5d39865271db60d37a'
+          }
           socket.emit('container-stats', stats)
         })
       })
@@ -24,6 +27,7 @@ getContainerStats()
 
 socket.on('connect', () => {
   docker.listContainers((err, containers) => {
+    containers[0].Id = 'c8dcc8d21072cf3946457b3b925c95458656e9be8a53cc5d39865271db60d37a'
     socket.emit('register-node', {
       containers: containers,
     })

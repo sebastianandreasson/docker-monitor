@@ -1,3 +1,8 @@
 .tag-container {
   display: flex;
 }
+
+.status {
+  height: 36px;
+  width: 20px;
+}

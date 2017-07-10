@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 // import Card, { CardHeader, CardContent } from 'material-ui/Card'
 import { TableRow, TableCell } from 'material-ui/Table'
 import Chip from 'material-ui/Chip'
-import Icon from 'material-ui/Icon'
+// import Icon from 'material-ui/Icon'
 
 // import Container from '../container'
 
@@ -23,12 +23,23 @@ function displayStat(stats, type) {
   return usage ? `${(usage * 100).toFixed(1)}%` : '-'
 }
 
+function colorForStats(stats) {
+  if (!stats) return 'yellow'
+  if (stats.cpu[0].system > 0.5) 'yellow'
+  if (stats.cpu[0].system > 0.8) 'red'
+
+  const memUsage = stats.memory[0].physical_used / stats.memory[0].physical_total
+  if (memUsage > 0.5) return 'yellow'
+  if (memUsage > 0.8) return 'red'
+}
+
 export const Node = (props) =>
   <TableRow>
     <TableCell>
-      <Icon className="material-icons" color="action">
+      <div styleName="status" style={{ backgroundColor: colorForStats(props.stats) }} />
+      {/* <Icon className="material-icons" color="action">
         desktop_windows
-      </Icon>
+      </Icon> */}
     </TableCell>
     <TableCell>
       <Link to={`/node/${props.uuid}`}>
