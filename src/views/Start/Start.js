@@ -4,7 +4,7 @@ import styles from './Start.css'
 import Card, { CardContent } from 'material-ui/Card'
 import Table, { TableHead, TableBody, TableRow, TableCell } from 'material-ui/Table'
 
-import Node from '../../components/node'
+import Node from '../../components/Node'
 
 export const Start = (props) =>
   <div>
