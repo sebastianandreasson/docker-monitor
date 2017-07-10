@@ -7,6 +7,21 @@ const socket = require('socket.io-client')(`http://${host}:${port}`)
 
 const docker = new Docker()
 
+function getContainerStats() {
+  docker.listContainers((err, containers) => {
+    containers.forEach((container) => {
+      docker.getContainer(container.Id).stats(function(err, stream) {
+        if (err) console.error(err)
+        stream.on('data', data => {
+          const stats = JSON.parse(data.toString())
+          socket.emit('container-stats', stats)
+        })
+      })
+    })
+  })
+}
+getContainerStats()
+
 socket.on('connect', () => {
   docker.listContainers((err, containers) => {
     socket.emit('register-node', {
