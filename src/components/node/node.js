@@ -1,13 +1,9 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
-import styles from './node.css'
+import styles from './Node.css'
 import { Link } from 'react-router'
-// import Card, { CardHeader, CardContent } from 'material-ui/Card'
 import { TableRow, TableCell } from 'material-ui/Table'
 import Chip from 'material-ui/Chip'
-// import Icon from 'material-ui/Icon'
-
-// import Container from '../container'
 
 function displayStat(stats, type) {
   if (!stats) return '-'
@@ -36,10 +32,7 @@ function colorForStats(stats) {
 export const Node = (props) =>
   <TableRow>
     <TableCell>
-      <div styleName="status" style={{ backgroundColor: colorForStats(props.stats) }} />
-      {/* <Icon className="material-icons" color="action">
-        desktop_windows
-      </Icon> */}
+      <div style={{ backgroundColor: colorForStats(props.stats) }} styleName="status" />
     </TableCell>
     <TableCell>
       <Link to={`/node/${props.uuid}`}>
@@ -58,20 +51,6 @@ export const Node = (props) =>
       {displayStat(props.stats, 'memory')}
     </TableCell>
   </TableRow>
-
-{/* <Table>
-  <TableHead>
-    <TableRow>
-      <TableCell>Name</TableCell>
-      <TableCell>Started</TableCell>
-    </TableRow>
-  </TableHead>
-  <TableBody>
-    {props.containers.map(container =>
-      <Container key={`Container_${container.uuid}`} {...container} />
-    )}
-  </TableBody>
-</Table> */}
 
 Node.propTypes = {
   containers: PropTypes.arrayOf(PropTypes.shape({})),

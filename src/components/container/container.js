@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
-import styles from './container.css'
+import styles from './Container.css'
 import { TableRow, TableCell } from 'material-ui/Table'
 
 export const Container = (props) =>
