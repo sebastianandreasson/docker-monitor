@@ -2,42 +2,73 @@ import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './node.css'
 import { Link } from 'react-router'
-import Card, { CardHeader, CardContent } from 'material-ui/Card'
-import Table, { TableBody, TableHead, TableRow, TableCell } from 'material-ui/Table'
+// import Card, { CardHeader, CardContent } from 'material-ui/Card'
+import { TableRow, TableCell } from 'material-ui/Table'
+import Chip from 'material-ui/Chip'
+import Icon from 'material-ui/Icon'
 
-import Container from '../container'
+// import Container from '../container'
+
+function displayStat(stats, type) {
+  if (!stats) return '-'
+  let usage
+  switch (type) {
+    case 'cpu':
+      usage = stats.cpu[0].system
+      break
+    case 'memory':
+      usage = stats.memory[0].physical_used / stats.memory[0].physical_total
+      break
+  }
+  return usage ? `${(usage * 100).toFixed(1)}%` : '-'
+}
 
 export const Node = (props) =>
-  <Card styleName="root">
-    <Link to={`/node/${props.uuid}`}>
-      <CardHeader
-        subheader={props.uuid}
-        title={`${props.public_ip},
-          CPU: ${props.stats ? props.stats.cpu[0].system: '-'}%,
-          MEM: ${props.stats ? (props.stats.memory[0].physical_used / props.stats.memory[0].physical_total) : '-'}%`}
-      />
-    </Link>
-    <CardContent>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Started</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.containers.map(container =>
-            <Container key={`Container_${container.uuid}`} {...container} />
-          )}
-        </TableBody>
-      </Table>
-    </CardContent>
-  </Card>
+  <TableRow>
+    <TableCell>
+      <Icon className="material-icons" color="action">
+        desktop_windows
+      </Icon>
+    </TableCell>
+    <TableCell>
+      <Link to={`/node/${props.uuid}`}>
+        {props.public_ip}
+      </Link>
+    </TableCell>
+    <TableCell>
+      <div styleName="tag-container">
+        {props.tags.map(tag => <Chip key={`Node_tag_${tag.name}`} label={tag.name} />)}
+      </div>
+    </TableCell>
+    <TableCell>
+      {displayStat(props.stats, 'cpu')}
+    </TableCell>
+    <TableCell>
+      {displayStat(props.stats, 'memory')}
+    </TableCell>
+  </TableRow>
+
+{/* <Table>
+  <TableHead>
+    <TableRow>
+      <TableCell>Name</TableCell>
+      <TableCell>Started</TableCell>
+    </TableRow>
+  </TableHead>
+  <TableBody>
+    {props.containers.map(container =>
+      <Container key={`Container_${container.uuid}`} {...container} />
+    )}
+  </TableBody>
+</Table> */}
 
 Node.propTypes = {
   containers: PropTypes.arrayOf(PropTypes.shape({})),
   public_ip: PropTypes.string,
-  stats: PropTypes.arrayOf(PropTypes.shape({})),
+  stats: PropTypes.shape({}),
+  tags: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string
+  })),
   uuid: PropTypes.string,
 }
 

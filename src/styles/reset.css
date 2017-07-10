@@ -4,17 +4,15 @@
 
 :global {
   body {
-    background: var(--color-cararra);
-    font-family: var(--font-din);
     margin: 0;
+    padding: 0;
   }
 
   a {
-    color: var(--color-paradiso);
+    color: #fff;
   }
-
-  strong {
-    font-family: var(--font-din-alt);
+  a:visited {
+    color: #fff;
   }
 
   em {

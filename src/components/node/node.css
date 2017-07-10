@@ -1,7 +1,3 @@
-.root {
-  margin-top: 10px;
+.tag-container {
   display: flex;
-  flex-direction: column;
-
-  background-color: lime;
 }
