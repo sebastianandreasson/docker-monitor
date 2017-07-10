@@ -26,6 +26,11 @@ export default handleActions({
     ...state,
     data: state.data.map(node => {
       node.stats = payload.stats[node.uuid]
+
+      node.containers = node.containers.map(container => {
+        container.stats = payload.stats[container.docker_id]
+        return container
+      })
       return node
     })
   })

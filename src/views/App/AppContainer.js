@@ -12,7 +12,10 @@ export class AppContainer extends Component {
   componentDidMount () {
     setInterval(() => {
       this.props.fetch()
-    }, 10000)
+    }, 15000)
+    setTimeout(() => {
+      this.props.fetch()
+    }, 2500)
   }
 
   render () {
