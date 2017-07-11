@@ -14,6 +14,7 @@ function getContainerStats() {
         if (err) console.error(err)
         stream.on('data', data => {
           const stats = JSON.parse(data.toString())
+          console.log(stats.id)
           socket.emit('container-stats', stats)
         })
       })
