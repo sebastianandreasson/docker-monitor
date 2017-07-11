@@ -2,8 +2,8 @@ docker-monitor:
   image: 'sebastianandreas/dockercloud-monitor:latest'
   environment:
     - server__port=3000
-    - dockerCloud__username=sebastianandreas
-    - dockerCloud__apiKey=b342ebf3-cbb6-4293-a1bf-e696b20a32c7
+    - dockerCloud__username=YOUR_USERNAME
+    - dockerCloud__apiKey=YOUR_API_KEY
   ports:
     - '3000:3000'
 node-agent:
