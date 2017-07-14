@@ -16,7 +16,19 @@ export default handleActions({
   [NODES_UPDATE]: (state, { payload }) => ({
     ...state,
     loading: false,
-    data: payload.nodes
+    data: payload.nodes.map((node, i) => {
+      if (state.data[i] && state.data[i].stats) {
+        node.stats = state.data[i].stats
+
+        node.containers = node.containers.map((container, j) => {
+          if (state.data[i].containers[j] && state.data[i].containers[j].stats) {
+            container.stats = state.data[i].containers[j].stats
+          }
+          return container
+        })
+      }
+      return node
+    })
   }),
   [NODES_FETCHING]: state => ({
     ...state,
