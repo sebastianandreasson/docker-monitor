@@ -7,27 +7,28 @@ const socket = require('socket.io-client')(`http://${host}:${port}`)
 
 const docker = new Docker()
 
-function getContainerStats() {
-  docker.listContainers((err, containers) => {
-    containers.forEach(container => {
-      docker.getContainer(container.Id).stats(function(err, stream) {
-        if (err) console.error(err)
-        stream.on('data', data => {
-          const stats = JSON.parse(data.toString())
-          console.log(stats.id)
-          socket.emit('container-stats', stats)
-        })
-      })
+function sendContainerStats(containers) {
+  containers.forEach(container => {
+    docker.getContainer(container.Id).stats({ stream: false }, function(err, data) {
+      if (err) console.error(err)
+      socket.emit('container-stats', data)
     })
   })
 }
-getContainerStats()
 
+let interval
 socket.on('connect', () => {
   docker.listContainers((err, containers) => {
     socket.emit('register-node', {
       containers: containers,
     })
+
+    sendContainerStats(containers)
+
+    clearInterval(interval)
+    interval = setInterval(() => {
+      sendContainerStats(containers)
+    }, 15000)
   })
 })
 
@@ -36,6 +37,12 @@ monitor.on('memory', data => socket.emit('memory', data))
 
 socket.on('containers', (callback) => {
   docker.listContainers((err, containers) => callback(containers))
+})
+
+socket.on('top', (data, callback) => {
+  docker.getContainer(data.id).top({ ps_args: 'aux' }, (err, data) => {
+    callback(data)
+  })
 })
 
 socket.on('container', (id, callback) => {
